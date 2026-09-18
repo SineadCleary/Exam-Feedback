@@ -17,7 +17,7 @@ DROP TABLE IF EXISTS exam;
 CREATE TABLE exam
 ( id INT PRIMARY KEY AUTO_INCREMENT,
 name VARCHAR(30) NOT NULL,
-exam_date date
+exam_date DATE 
 );
 
 describe exam;
@@ -36,9 +36,11 @@ DROP TABLE IF EXISTS feedback;
 CREATE TABLE feedback
 (
 id INT PRIMARY KEY AUTO_INCREMENT,
+exam_id INT NOT NULL,
 q_number INT NOT NULL,
 general_feedback VARCHAR(30),
-specific_feedback TEXT
+specific_feedback TEXT,
+FOREIGN KEY (exam_id) REFERENCES exam(id)
 );
 
 describe feedback;
@@ -83,38 +85,27 @@ SELECT * FROM exam_student;
 
 -- JOIN TABLES
 
+-- Select a student's exam
 SELECT 
 e.id AS 'exam_id', 
-e.exam_date AS 'date', 
-e.name, 
+DATE_FORMAT(e.exam_date, "%d-%m-%Y") AS 'date', 
+e.name AS 'exam_name', 
 s.id AS 'stud_id', 
+s.username,
 s.firstname, 
 s.lastname 
 FROM exam e 
 JOIN exam_student j ON e.id = j.exam_id 
-JOIN student s ON s.id = j.student_id;
+JOIN student s ON s.id = j.student_id
+WHERE s.id = 1;
 
-SELECT
-e.id AS 'exam_id', 
-e.exam_date AS 'date', 
-e.name, 
-s.id AS 'stud_id', 
-s.firstname, 
-s.lastname 
-FROM exam e 
-JOIN exam_student j ON e.id = j.exam_id 
-JOIN student s ON s.id = j.student_id AND exam_date = '2026-07-25';
-
+-- Select all feedback
 SELECT 
-e.id AS 'exam_id', 
-e.exam_date AS 'date', 
-e.NAME, s.id AS'stud_id', 
-s.firstname, 
-s.lastname 
-FROM exam e 
-JOIN exam_student j ON e.id = j.exam_id 
-JOIN student s ON s.id = j.student_id 
-WHERE e.exam_date = '2026-07-27' AND s.id = 4;
+f.id, f.exam_id, f.q_number, f.general_feedback, f.specific_feedback,
+DATE_FORMAT(e.exam_date, "%d-%m-%Y") AS 'date', e.name AS 'exam_name'
+FROM feedback f
+JOIN exam e ON f.exam_id = e.id;
+
 
 
 
