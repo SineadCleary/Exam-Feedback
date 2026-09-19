@@ -5,4 +5,4 @@ import App from './App.vue'
 import Login from './Login.vue'
 import Feedback from './Feedback.vue'
 
-createApp(Login).mount('#app')
+createApp(Feedback).mount('#app')

@@ -1,12 +1,14 @@
 require('dotenv').config();
 const express = require('express');
 const mysql = require('mysql2');
+const cors = require('cors');
 
 const app = express();
 const port = process.env.PORT;
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(cors());
 
 const db = mysql.createPool({
     connectionLimit: Number(process.env.DB_CONNECTION_LIMIT),

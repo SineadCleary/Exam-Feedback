@@ -1,11 +1,16 @@
 <script setup>
-import { ref } from 'vue'
+import { postFeedback } from './api'
 
 const username = "sinead"
 const fname = "Sinéad"
 const lname = "Cleary"
 const exam = "Physics"
 const date = "26/07/2026"
+
+var number;
+var general;
+var specific;
+
 </script>
 
 <template>
@@ -21,37 +26,37 @@ const date = "26/07/2026"
       <span>{{ date }} </span>
     </div>
 
-    <form>
+    <form @submit="postFeedback( 1, number, general, specific)">
       <div class="form-row">
         <span>
           <label class="form-label" for="question">Question number:</label>
-          <input type="number" id="question" min="1" required>
+          <input v-model="number" type="number" id="question" min="1" required>
         </span>
       </div>
        
       <div class="form-row">
       <label for="general" class="form-label">General feedback:</label>
         <span>
-          <input type="radio" name="general" id="a" value="Not covered in notes" checked>
+          <input v-model="general" type="radio" name="general" id="a" value="Not covered in notes" checked>
           <label for="a">Not covered in notes</label>
           
-          <input type="radio" name="general" id="b" value="Question/answers unclear">
+          <input v-model="general" type="radio" name="general" id="b" value="Question/answers unclear">
           <label for="b">Question/answers unclear</label>
           
-          <input type="radio" name="general" id="c" value="More than one correct answer">
+          <input v-model="general" type="radio" name="general" id="c" value="More than one correct answer">
           <label for="c">More than one correct answer</label>
 
-          <input type="radio" name="general" id="d" value="No correct answer">
+          <input v-model="general" type="radio" name="general" id="d" value="No correct answer">
           <label for="d">No correct answer</label>
 
-          <input type="radio" name="general" id="e" value="Other">
+          <input v-model="general" type="radio" name="general" id="e" value="Other">
           <label for="d">Other</label>
         </span>
       </div>
 
       <div class="form-row">
-        <label for="specfic" class="form-label">Specific feedback:</label>
-        <textarea placeholder="Specific feedback" rows="10" cols="100"></textarea>
+        <label class="form-label">Specific feedback:</label>
+        <textarea v-model="specific" placeholder="Specific feedback" rows="10" cols="100"></textarea>
       </div>
 
       <div class="form-row">

@@ -1,4 +1,6 @@
 <script setup>
+import { getStudentExam } from './api';
+
 
 </script>
 
@@ -20,7 +22,7 @@
       </div>
 
       <div class="form-row">
-        <button type="submit">Login</button>
+        <button type="submit" @click="getStudentExam(1)">Login</button>
       </div>
 
     </form>
