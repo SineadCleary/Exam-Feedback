@@ -1,15 +1,39 @@
 <script setup>
-import { postFeedback } from './api'
+import { postFeedback, getStudentExam } from './api'
 import router from './router'
 import { ref } from 'vue'
 
-const feedbackForm = ref();
+// var student_exam = await getStudentExam(sessionStorage.getItem("userId"));
+// console.log(sessionStorage.getItem("userId"));
+// console.log(student_exam);
 
-const username = "sinead"
-const fname = "Sinéad"
-const lname = "Cleary"
-const exam = "Physics"
-const date = "26/07/2026"
+// var username = student_exam.username;
+// var fname = student_exam.firstname;
+// var lname = student_exam.lastname;
+// var exam = student_exam.exam_name;
+// var date = student_exam.date;
+
+const username = ref(""); 
+const fname = ref(""); 
+const lname = ref(""); 
+const exam = ref(""); 
+const date = ref(""); 
+
+const loadStudentExam = async () => { 
+  try { 
+    const userId = sessionStorage.getItem("userId"); 
+    const student_exam = await getStudentExam(userId); 
+
+    username.value = student_exam.username; 
+    fname.value = student_exam.firstname; 
+    lname.value = student_exam.lastname; 
+    exam.value = student_exam.exam_name; 
+    date.value = student_exam.date; 
+  } catch (error) { 
+    console.error(error); 
+  } 
+}; 
+loadStudentExam();
 
 const generalFeedback = [
   "Not covered in notes",
@@ -38,7 +62,8 @@ function submitForm() {
 }
 
 function logout() {
-  router.push('/')
+  router.push('/');
+  sessionStorage.clear();
 }
 
 </script>
@@ -53,7 +78,7 @@ function logout() {
       <button @click="logout" id="logout">Log out</button>
     </div>
 
-    <form ref="feedbackForm" @submit.prevent="submitForm">
+    <form @submit.prevent="submitForm">
       <div class="form-row">
         <span>
           <label class="form-label" for="question">Question number:</label>

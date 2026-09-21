@@ -7,6 +7,7 @@ export const getStudentExam = async (studentId) => {
             "http://localhost:8080/exam/" + studentId 
         );
         console.log(response.data);
+        return response.data;
     } catch (error) {
         console.error(error);
     }
@@ -35,9 +36,13 @@ export const login = async (username, password) => {
                 password: password,
             }
         );
-        console.log(response.data);
-        router.push('feedback');
+        console.log(response.data);        
+        sessionStorage.setItem("userId", response.data.student.id);
+        router.push('/feedback');
+        return response.data;
     } catch (error) {
         console.error(error);
+        // console.log(error.status);
+        if (error.status===401) alert("User not found");
     }
 }
