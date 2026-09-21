@@ -1,5 +1,5 @@
-// const axios = require("axios")
 import axios from "axios";
+import router from "./router"
 
 export const getStudentExam = async (studentId) => {
     try {
@@ -36,6 +36,7 @@ export const login = async (username, password) => {
             }
         );
         console.log(response.data);
+        router.push('feedback');
     } catch (error) {
         console.error(error);
     }

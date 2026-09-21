@@ -3,15 +3,16 @@ import { getStudentExam, login } from './api';
 
 var username;
 var password;
+
 </script>
 
 <template>
   <header>
-    <h1>Exam Question Feedback - Login</h1>
+    <h2>Login</h2>
   </header>
 
   <main>
-    <form @submit="login(username, password)">
+    <form @submit.prevent="login(username, password)">
       <div class="form-row">
         <label for="username">Username</label>
         <input v-model="username" id="username" required>
