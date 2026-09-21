@@ -79,6 +79,18 @@ app.get('/exam/:id', (req, res) => {
     });
 });
 
+// login
+app.post('/login', (req, res) => {
+    const { username, password } = req.body;
+    db.query('SELECT s.id, s.username, s.firstname, s.lastname FROM student s WHERE username = ? AND password = ?;', 
+    [username, password],
+    (err, rows) => {
+        if (err) res.status(500).json({error: 'database error'});
+        else if (rows.length===0) res.status(401).json({error: 'user not found'})
+        else res.status(201).json({success: true, msg: 'Login successful', student: rows[0]});
+    });
+});
+
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
 })

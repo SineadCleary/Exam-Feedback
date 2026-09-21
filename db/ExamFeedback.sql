@@ -106,6 +106,10 @@ DATE_FORMAT(e.exam_date, "%d-%m-%Y") AS 'date', e.name AS 'exam_name'
 FROM feedback f
 JOIN exam e ON f.exam_id = e.id;
 
+-- Get a student
+SELECT s.id, s.username, s.firstname, s.lastname FROM student s
+WHERE username = 'sinead' AND password = 'sinead123';
+
 
 
 

@@ -1,7 +1,8 @@
 <script setup>
-import { getStudentExam } from './api';
+import { getStudentExam, login } from './api';
 
-
+var username;
+var password;
 </script>
 
 <template>
@@ -10,19 +11,19 @@ import { getStudentExam } from './api';
   </header>
 
   <main>
-    <form>
+    <form @submit="login(username, password)">
       <div class="form-row">
         <label for="username">Username</label>
-        <input id="username" required>
+        <input v-model="username" id="username" required>
       </div>
         
       <div class="form-row">
         <label for="password">Password</label>
-        <input type="password" id="password">
+        <input v-model="password" type="password" id="password">
       </div>
 
       <div class="form-row">
-        <button type="submit" @click="getStudentExam(1)">Login</button>
+        <button type="submit">Login</button>
       </div>
 
     </form>

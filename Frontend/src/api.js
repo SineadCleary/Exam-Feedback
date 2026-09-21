@@ -26,3 +26,17 @@ export const postFeedback = async (exam_id, q_number, general_feedback, specific
         console.error(error);
     }
 }
+
+export const login = async (username, password) => {
+    try {
+        const response = await axios.post(
+            "http://localhost:8080/login", {
+                username: username,
+                password: password,
+            }
+        );
+        console.log(response.data);
+    } catch (error) {
+        console.error(error);
+    }
+}
