@@ -83,3 +83,6 @@ DB_NAME='feedback'
 ```
 3. Run `node server.js` to start the API.
 4. Navigate to `\Frontend` and run `npm run dev` to start the web app.
+
+## References
+`sw.js` based on code from https://learn.microsoft.com/en-us/microsoft-edge/progressive-web-apps/how-to/
