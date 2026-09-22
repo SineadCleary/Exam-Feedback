@@ -97,7 +97,8 @@ s.lastname
 FROM exam e 
 JOIN exam_student j ON e.id = j.exam_id 
 JOIN student s ON s.id = j.student_id
-WHERE s.id = 1;
+WHERE s.id = 1
+ORDER BY date DESC;
 
 -- Select all feedback
 SELECT 

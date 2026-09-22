@@ -68,10 +68,10 @@ app.get('/feedback', (req, res) => {
     });
 });
 
-// Get student's exam
+// Get student's most recent exam
 app.get('/exam/:id', (req, res) => {
     const studentId = req.params.id;
-    db.query("SELECT e.id AS 'exam_id', DATE_FORMAT(e.exam_date, '%d-%m-%Y') AS 'date', e.name AS 'exam_name', s.id AS 'stud_id', s.username,s.firstname, s.lastname FROM exam e JOIN exam_student j ON e.id = j.exam_id JOIN student s ON s.id = j.student_id WHERE s.id = ?;", 
+    db.query("SELECT e.id AS 'exam_id', DATE_FORMAT(e.exam_date, '%d-%m-%Y') AS 'date', e.name AS 'exam_name', s.id AS 'stud_id', s.username,s.firstname, s.lastname FROM exam e JOIN exam_student j ON e.id = j.exam_id JOIN student s ON s.id = j.student_id WHERE s.id = ? ORDER BY date DESC;", 
     studentId, 
     (err, rows) => {
         if (err) res.status(500).json({error: 'database error'});

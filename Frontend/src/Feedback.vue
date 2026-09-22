@@ -18,6 +18,7 @@ const fname = ref("");
 const lname = ref(""); 
 const exam = ref(""); 
 const date = ref(""); 
+const examId = ref("");
 
 const loadStudentExam = async () => { 
   try { 
@@ -29,6 +30,7 @@ const loadStudentExam = async () => {
     lname.value = student_exam.lastname; 
     exam.value = student_exam.exam_name; 
     date.value = student_exam.date; 
+    examId.value = student_exam.exam_id;
   } catch (error) { 
     console.error(error); 
   } 
@@ -48,7 +50,7 @@ var specific = ref("");
 
 function submitForm() {
   try {
-    postFeedback( 1, number.value, general.value, specific.value);
+    postFeedback( examId.value, number.value, general.value, specific.value);
     alert("Feedback submitted");
 
     // reset form
