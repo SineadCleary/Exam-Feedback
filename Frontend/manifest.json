@@ -1,0 +1,17 @@
+{
+    "name": "Exam Questions Feedback",
+    "short_name": "Exam Feedback",
+    "theme_color": "#32a852",
+    "background_color": "#1f472a",
+    "display": "standalone",
+    "scope": "/",
+    "start_url": "/",
+    "description": "Log in and submit exam question feedback",
+    "orientation": "any",
+    "icons": [
+      {
+        "src": "icon.png",
+        "sizes": "512x512"
+      }
+  ]
+}
