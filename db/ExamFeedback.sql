@@ -37,6 +37,7 @@ CREATE TABLE feedback
 (
 id INT PRIMARY KEY AUTO_INCREMENT,
 exam_id INT NOT NULL,
+student VARCHAR(61) NOT NULL,
 q_number INT NOT NULL,
 general_feedback VARCHAR(30),
 specific_feedback TEXT,

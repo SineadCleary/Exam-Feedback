@@ -50,7 +50,7 @@ var specific = ref("");
 
 function submitForm() {
   try {
-    postFeedback( examId.value, number.value, general.value, specific.value);
+    postFeedback( examId.value, fname.value + ' ' + lname.value, number.value, general.value, specific.value);
     alert("Feedback submitted");
 
     // reset form
