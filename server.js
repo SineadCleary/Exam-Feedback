@@ -50,9 +50,9 @@ app.post('/student', (req, res) => {
 
 // Post feedback
 app.post('/feedback', (req, res) => {
-    const { exam_id, student, q_number, general_feedback, specific_feedback } = req.body;
-    db.query('INSERT INTO feedback (exam_id, student, q_number, general_feedback, specific_feedback) VALUES (?, ?, ?, ?, ?)', 
-    [exam_id, student, q_number, general_feedback, specific_feedback],
+    const { exam_id, student_id, q_number, general_feedback, specific_feedback } = req.body;
+    db.query('INSERT INTO feedback (exam_id, student_id, q_number, general_feedback, specific_feedback) VALUES (?, ?, ?, ?, ?)', 
+    [exam_id, student_id, q_number, general_feedback, specific_feedback],
     (err, result) => {
         if (err) res.status(500).json({error: 'database error'});
         else res.status(201).json({success: true, msg: 'Feedback added successfully'});
@@ -61,7 +61,7 @@ app.post('/feedback', (req, res) => {
 
 // Get all feedback
 app.get('/feedback', (req, res) => {
-    db.query("SELECT f.id, f.student, f.exam_id, f.q_number, f.general_feedback, f.specific_feedback, DATE_FORMAT(e.exam_date, '%d-%m-%Y') AS 'date', e.name AS 'exam_name' FROM feedback f JOIN exam e ON f.exam_id = e.id;", 
+    db.query("SELECT f.id, f.student_id, f.exam_id, f.q_number, f.general_feedback, f.specific_feedback, DATE_FORMAT(e.exam_date, '%d-%m-%Y') AS 'date', e.name AS 'exam_name' FROM feedback f JOIN exam e ON f.exam_id = e.id;", 
     (err, rows) => {
         if (err) res.status(500).json({error: 'database error'});
         res.json(rows);

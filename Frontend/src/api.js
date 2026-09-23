@@ -13,12 +13,12 @@ export const getStudentExam = async (studentId) => {
     }
 }
 
-export const postFeedback = async (exam_id, student, q_number, general_feedback, specific_feedback) => {
+export const postFeedback = async (exam_id, student_id, q_number, general_feedback, specific_feedback) => {
     try {
         const response = await axios.post(
             "http://localhost:8080/feedback/", {
                 exam_id: exam_id,
-                student: student,
+                student_id: student_id,
                 q_number: q_number,
                 general_feedback: general_feedback,
                 specific_feedback: specific_feedback,

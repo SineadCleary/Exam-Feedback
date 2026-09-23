@@ -19,12 +19,14 @@ const lname = ref("");
 const exam = ref(""); 
 const date = ref(""); 
 const examId = ref("");
+const studentId = ref("");
 
 const loadStudentExam = async () => { 
   try { 
     const userId = sessionStorage.getItem("userId"); 
     const student_exam = await getStudentExam(userId); 
 
+    studentId.value = student_exam.stud_id;
     username.value = student_exam.username; 
     fname.value = student_exam.firstname; 
     lname.value = student_exam.lastname; 
@@ -50,7 +52,7 @@ var specific = ref("");
 
 function submitForm() {
   try {
-    postFeedback( examId.value, fname.value + ' ' + lname.value, number.value, general.value, specific.value);
+    postFeedback( examId.value, studentId.value, number.value, general.value, specific.value);
     alert("Feedback submitted");
 
     // reset form

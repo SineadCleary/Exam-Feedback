@@ -37,11 +37,12 @@ CREATE TABLE feedback
 (
 id INT PRIMARY KEY AUTO_INCREMENT,
 exam_id INT NOT NULL,
-student VARCHAR(61) NOT NULL,
+student_id INT NOT NULL,
 q_number INT NOT NULL,
 general_feedback VARCHAR(30),
 specific_feedback TEXT,
-FOREIGN KEY (exam_id) REFERENCES exam(id)
+FOREIGN KEY (exam_id) REFERENCES exam_student(exam_id),
+FOREIGN KEY (student_id) REFERENCES exam_student(student_id)
 );
 
 describe feedback;
